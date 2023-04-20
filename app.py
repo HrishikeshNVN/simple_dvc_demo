@@ -37,13 +37,12 @@ def api_response(request):
     except Exception as e:
         print(e)
         error = {"error": "Something went wrong!! Try again later!"}
-        return error
+        return error 
 
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-
     if request.method == "POST":
         try:
             if request.form:
@@ -51,8 +50,8 @@ def index():
                 data = [list(map(float, data))]
                 response = predict(data)
                 return render_template("index.html", response=response)
-                response = prediction.form_response(dict_req)
-                return render_template("index.html", response=response)
+                # response = prediction.form_response(dict_req)
+                # return render_template("index.html", response=response)
             elif request.json:
                 response = api_response(request)
                 return jsonify(response)
